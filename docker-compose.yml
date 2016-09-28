@@ -1,0 +1,21 @@
+--- 
+db: 
+  environment: 
+    MYSQL_PASSWORD: serverplatform123
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_USER: serverplatform
+  image: shahnimesh2/mysql_image
+  ports: 
+    - "3306:3306"
+mongo: 
+  command: "--smallfiles --rest --noauth"
+  image: "mongo:3.2"
+  ports: 
+    - "27017:27017"
+  volumes_from: 
+    - mongodata
+mongodata: 
+  command: "--break-mongo"
+  image: "mongo:3.2"
+  volumes: 
+    - /data/db
